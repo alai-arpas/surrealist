@@ -18,6 +18,8 @@ mod open;
 mod paths;
 mod window;
 
+mod adbsqlite;
+
 struct OpenResourceState(pub Mutex<Vec<url::Url>>);
 
 fn store_resources<T: IntoIterator<Item = String>>(app: &AppHandle, args: T) {
@@ -39,6 +41,9 @@ fn store_resources<T: IntoIterator<Item = String>>(app: &AppHandle, args: T) {
 }
 
 fn main() {
+    // alai SQLITEDB
+    adbsqlite::info();
+
     let context = tauri::generate_context!();
     let log_time_fmt =
         format_description::parse("[year]-[month]-[day] [hour]:[minute]:[second]").unwrap();
